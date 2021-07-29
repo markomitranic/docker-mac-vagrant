@@ -20,22 +20,19 @@ D4M is slow. Primarily because of its osxfs/grpcfuse sharing filesystem. On the 
     vagrant plugin install vagrant-env
     cp .env.dist .envrc
     ```
-2. Set your preferred shared folder in the `.env` file, for example `SHARE_PATH="/Users/markomitranic/Sites/"`
-3. Add a hosts segment:
-    ```bash
-    sudo echo "192.168.50.4 docker-vagrant" >> /etc/hosts
-    ```
+2. Set your preferred shared folder in the `.env` file, for example `SHARE_PATH="/Users/markomitranic/Sites/"` Now reload the direnv with `direnv allow`.
+3. Thats it, start vagrant with `vagrant up`.
 4. Add the following to VScode Settings:
     ```bash
     "docker.explorerRefreshInterval": 10000,
-    "docker.host": "ssh://vagrant@192.168.50.4",
+    "docker.host": "ssh://vagrant@workbox",
     ```
 5. You can even set up a docker context. Works similarly to what you'd use `docker-machine` for:
     ```bash
-    docker context create docker-vagrant --docker "host=ssh://vagrant@192.168.50.4"
-    docker context use docker-vagrant
+    docker context create workbox --docker "host=ssh://vagrant@workbox"
+    docker context use workbox
     ```
-6. Thats it, start vagrant with `vagrant up`.
+
 
 ## Usage
 
