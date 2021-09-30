@@ -36,7 +36,7 @@ D4M is slow. Primarily because of its osxfs/grpcfuse sharing filesystem. On the 
 
 ## Usage
 
-There are various ways to code in this setup.
+There are various ways to code in this setup. I have outlined my decisions in a [thorough article](https://medium.com/homullus/docker-for-mac-performance-diy-d4m-e4232ca8b671).
 
 ### Naked
 You can just go oldschool and keep coding on your local machine. Use your editor of choice. All the files will be sync-ed over to the containers at nearly native speeds.
@@ -50,5 +50,6 @@ A better (albeit weird at first) way would be to share the code from your machin
 Feeling adventurous? Don't use sharing at all. Provision the VM with your SSH key, and download your projects. Start containers. Refer to [Remote Interpreter](#remote-coding) section for directions on how to use the editors.
 
 ## Remote coding How-tos
+I have written an extensive [article on the topic](https://medium.com/homullus/remote-development-or-how-i-learned-to-stop-worrying-and-love-the-mainframe-90165147a57d), in short:
 - VSCode has a built in "Attach to remote Container" capability. It spawns a real editor and you work directly with the native interpreter within the container.
 - JetBrains "thick-ide" products like PHPStorm have a similar capability to be located on your host, but use a remote interpreter from within the container.
