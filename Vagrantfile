@@ -32,4 +32,18 @@ Vagrant.configure("2") do |config|
   config.vm.provision :docker
   config.vm.provision "shell", path: "provision.sh"
 
+  config.trigger.after :up do |trigger|
+    trigger.warn = "Configuring SSH and Docker via post-provisioning trigger..."
+    trigger.run = {
+      inline: "bash -c './trigger-up.sh \"#{env_box_name}\"'",
+    }
+  end
+
+  config.trigger.before [:halt, :destroy] do |trigger|
+    trigger.warn = "Cleaning up Docker and SSH configuration..."
+    trigger.run = {
+      inline: "bash -c './trigger-halt.sh \"#{env_box_name}\"'",
+    }
+  end
+
 end
