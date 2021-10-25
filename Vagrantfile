@@ -17,6 +17,8 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   
   config.vm.box = "bento/ubuntu-20.04"
+  config.vm.define env_box_name
+  config.vm.hostname = env_box_name
   config.vm.synced_folder env_share_path, env_share_path
   config.ssh.extra_args = ["-t", "cd #{env_share_path}; bash --login"]
 
