@@ -14,6 +14,7 @@ D4M is slow. Primarily because of its osxfs/grpcfuse sharing filesystem. On the 
 1. Install and set up vagrant VM:
     ```bash
     ./setup.sh
+    cp .env.dist .env
     ```
 2. Set your preferred shared folder in the `.env` file, for example `SHARE_PATH="$HOME/Sites/"`
 3. Thats it, start vagrant with `vagrant up`.
