@@ -17,6 +17,8 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
   
   config.vm.box = "bento/ubuntu-20.04"
+  config.vm.define env_box_name
+  config.vm.hostname = env_box_name
   config.vm.synced_folder env_share_path, env_share_path
   config.ssh.extra_args = ["-t", "cd #{env_share_path}; bash --login"]
 
@@ -29,5 +31,19 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :docker
   config.vm.provision "shell", path: "provision.sh"
+
+  config.trigger.after :up do |trigger|
+    trigger.warn = "Configuring SSH and Docker via post-provisioning trigger..."
+    trigger.run = {
+      inline: "bash -c './trigger-up.sh \"#{env_box_name}\"'",
+    }
+  end
+
+  config.trigger.before [:halt, :destroy] do |trigger|
+    trigger.warn = "Cleaning up Docker and SSH configuration..."
+    trigger.run = {
+      inline: "bash -c './trigger-halt.sh \"#{env_box_name}\"'",
+    }
+  end
 
 end
