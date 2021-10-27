@@ -14,7 +14,6 @@ D4M is slow. Primarily because of its osxfs/grpcfuse sharing filesystem. On the 
 1. Install and set up vagrant VM:
     ```bash
     brew install direnv
-    brew tap hashicorp/tap
     brew install vagrant
     vagrant plugin install vagrant-parallels
     vagrant plugin install vagrant-env
