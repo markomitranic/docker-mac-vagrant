@@ -19,18 +19,23 @@ vagrant ssh-config "$BOX_NAME" > "$HOME/.ssh/config.d/${BOX_NAME}"
 SSH_CONFIG_HAS_INCLUDE_D="$(grep -i 'Include config.d/*' "$HOME/.ssh/config" || true )"
 
 if [ -z "$SSH_CONFIG_HAS_INCLUDE_D" ]; then
+    echo "Backup $HOME/.ssh/config"
+    cp $HOME/.ssh/config $HOME/.ssh/config.bak
     echo "Adding 'Include config.d/*' to '$HOME/.ssh/config' file..."
-
-    # Define newline. OSX sed does not know how to interpret \n
-    # character. This must be spread over two lines and must not
-    # include spaces!
-    nl='
-'
-    # Prepend content to the start of the file
-    sed -i '1s;^;Include config.d/*'"\\${nl}\\${nl}"';' "$HOME/.ssh/config"
-    unset nl
+    printf '%s\n%s\n' "Include config.d/*" "" "$(cat $HOME/.ssh/config)" > $HOME/.ssh/config
 else
     echo "No need to modify '$HOME/.ssh/config'. Continuing..."
+fi
+
+HOSTS_HAS_BOX_NAME="$(grep -i $BOX_NAME "/etc/hosts" || true )"
+
+if [ -z "$HOSTS_HAS_BOX_NAME" ]; then
+    echo "Backup /etc/hosts"
+    sudo cp /etc/hosts /etc/hosts.bak 
+    echo "Adding '$BOX_NAME' to /etc/hosts file on local loopback"
+    sudo bash -c "echo '127.0.0.1 $BOX_NAME' >> /etc/hosts"
+else
+    echo "No need to modify '/etc/hosts'. Continuing..."
 fi
 
 ssh-keyscan -H "$BOX_NAME" >> ~/.ssh/known_hosts
