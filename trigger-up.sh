@@ -33,7 +33,7 @@ else
     echo "No need to modify '$HOME/.ssh/config'. Continuing..."
 fi
 
-ssh-keyscan -H "$BOX_NAME" >> ~/.ssh/known_hosts
+ssh-keyscan -H "$BOX_NAME" >> "$HOME/.ssh/known_hosts"
 
 docker context create "$BOX_NAME" --docker "host=ssh://vagrant@${BOX_NAME}" || true
 docker context use "$BOX_NAME" || true
