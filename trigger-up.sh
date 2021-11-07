@@ -27,7 +27,7 @@ if [ -z "$SSH_CONFIG_HAS_INCLUDE_D" ]; then
     nl='
 '
     # Prepend content to the start of the file
-    sed -i '1s;^;Include config.d/*'"\\${nl}\\${nl}"';' "$HOME/.ssh/config"
+    sed -i'.bak' -e '1s;^;Include config.d/*'"\\${nl}\\${nl}"';' "$HOME/.ssh/config"
     unset nl
 else
     echo "No need to modify '$HOME/.ssh/config'. Continuing..."
