@@ -31,21 +31,30 @@ This repository automates the provisioning of a Vagrant VM that acts as a hyperv
 There are various ways to code in this setup. I have outlined my decisions in a [thorough article](https://medium.com/homullus/docker-for-mac-performance-diy-d4m-e4232ca8b671).
 
 ### Naked
-Files - Host&VM; Editor - Host;
+| 	😪	|	Files	|	Editor/Interpreter	|	Runtime	|
+|	-	|	-		|	-					|	-		|
+|	Host|	🔻		|	🔻					|			|
+|	VM	|	🔻		|						|	🔻		|
 
 You can just go oldschool and keep coding on your local machine. Use your editor of choice. All the files will be sync-ed over to the containers at nearly native speeds. In other words, you run your Docker project as you usually would.
 
 **Reminder:** You will need however, to have the language you use installed on your machine, if you hope to have intellisense.
 
 ### Remote Interpreter
-Files - Host&VM; Editor - VM;
+| 	💿	|	Files	|	Editor/Interpreter	|	Runtime	|
+|	-	|	-		|	-					|	-		|
+|	Host|	🔻		|						|			|
+|	VM	|	🔻		|	🔻					|	🔻		|
 
 A better (albeit weird at first) way would be to share the code from your machine to the Parallels VM. Start containers. Refer to [Remote coding How-tos](#remote-coding-how-tos) section for directions on how to use the editors.
 
 **Here's an example** - Host computer has no idea what Python is. I start the Docker container with Python inside. I click a button in VSCode, and it magically "teleports" itself into the container. You can now literally code within the container, without ever leaving the comfort of your editor. Of course, the files are on a volume so any changes you make are safely in sync with your local folder.
 
 ### Container-first
-Files - VM; Editor - VM;
+| 	🛰	|	Files	|	Editor/Interpreter	|	Runtime	|
+|	-	|	-		|	-					|	-		|
+|	Host|			|						|			|
+|	VM	|	🔻		|	🔻					|	🔻		|
 
 Feeling adventurous? Don't use sharing at all. Provision the VM with your SSH key, and download your projects inside the VM. Use the rest the same as you would in the Remote Interpreter segment above. You will get an insane speed boost since you don't have any shared files between host and the VM - everything is only in VM.
 
