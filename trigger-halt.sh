@@ -8,7 +8,7 @@ if [ -z "$BOX_NAME" ]; then
     exit 1
 fi
 
-VAGRANT_BOX_IP=$(grep -i HostName "~/.ssh/config.d/${BOX_NAME}" | awk '{print $NF}' || true)
+VAGRANT_BOX_IP=$(grep -i HostName "$HOME/.ssh/config.d/${BOX_NAME}" | awk '{print $NF}' || true)
 
 docker context use default
 
