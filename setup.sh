@@ -8,8 +8,13 @@ if [ ! -f .env ]; then
     cp .env.dist .env
 fi
 
-source .env
+echo
+echo 'Contents of your .env file:'
 
-if [ ! -d "$SHARE_PATH" ]; then
-    mkdir -p "$SHARE_PATH"
-fi
+cat .env
+
+echo
+echo 'Please review variables defined in .env file shown above.'
+echo 'If you need to make any adjustments, edit .env file now!'
+echo 'For example, you might want to adjust SHARE_PATH to where'
+echo 'your work directory resides.'
