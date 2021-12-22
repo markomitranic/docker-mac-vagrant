@@ -33,13 +33,6 @@ else
     echo "No need to modify '$HOME/.ssh/config'. Continuing..."
 fi
 
-ssh-keyscan -H "$BOX_NAME" >> "$HOME/.ssh/known_hosts"
-
-VAGRANT_BOX_IP=$(grep -i HostName "$HOME/.ssh/config.d/${BOX_NAME}" | awk '{print $NF}' || true)
-if [ ! -z "$VAGRANT_BOX_IP" ]; then
-    ssh-keyscan -H "$VAGRANT_BOX_IP" >> "$HOME/.ssh/known_hosts"
-fi
-
 docker context create "$BOX_NAME" --docker "host=ssh://vagrant@${BOX_NAME}" || true
 docker context use "$BOX_NAME" || true
 
