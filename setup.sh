@@ -3,6 +3,7 @@
 brew install vagrant
 vagrant plugin install vagrant-parallels
 vagrant plugin install vagrant-env
+vagrant plugin install vagrant-hostmanager
 
 if [ ! -f .env ]; then
     cp .env.dist .env

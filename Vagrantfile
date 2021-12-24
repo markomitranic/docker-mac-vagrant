@@ -4,6 +4,12 @@
 Vagrant.configure("2") do |config|
   # Load variables from .env
   config.env.enable
+
+  # Configure hostmanager to update /etc/hosts
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = true
+
   env_box_name = ENV["BOX_NAME"]
   env_ram = ENV["RAM_MEMORY"]
   env_cpus = ENV["CPU_COUNT"]
