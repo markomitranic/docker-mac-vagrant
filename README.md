@@ -55,6 +55,8 @@ A better (albeit weird at first) way would be to share the code from your machin
 |	Host|			|						|			|
 |	VM	|	🔻		|	🔻					|	🔻		|
 
+**Important: Use [`container-first`](https://github.com/markomitranic/docker-mac-vagrant/tree/container-first) Branch!**
+
 Feeling adventurous? Don't use sharing at all. Provision the VM with your SSH key, and download your projects inside the VM. Use the rest the same as you would in the Remote Interpreter segment above. You will get an insane speed boost since you don't have any shared files between host and the VM - everything is only in VM.
 
 ## Remote coding How-tos
