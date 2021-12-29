@@ -35,6 +35,7 @@ For more usage examples and videos, read [my article](https://medium.com/homullu
   vagrant ssh-config >>  ~/.ssh/config
   echo "  ForwardAgent yes" >>  ~/.ssh/config
   ```
+5. (optional) Add it to your hosts file. The VM will provide a private IP address that you can add to your hosts file. The Address is static and controlled via your `.env`
 
 ## First time Connecting VSCode
 1. Clone the VSCode project settings repository. 
