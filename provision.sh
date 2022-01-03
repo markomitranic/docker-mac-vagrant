@@ -16,9 +16,12 @@ ln -s /usr/local/bin/kubectl /usr/bin/kubectl
 
 # Install k9s 
 # https://github.com/derailed/k9s
-curl -L "https://github.com/derailed/k9s/releases/download/v0.25.18/k9s_Linux_x86_64.tar.gz" -o /usr/local/bin/k9s
-chmod +x /usr/local/bin/k9s
+curl -L "https://github.com/derailed/k9s/releases/download/v0.25.18/k9s_Linux_x86_64.tar.gz" -o k9s.tar.gz
+tar -xvzf k9s.tar.gz
+chmod +x k9s
+mv ./k9s /usr/local/bin/k9s
 ln -s /usr/local/bin/k9s /usr/bin/k9s
+rm -rf LICENSE README.md k9s.tar.gz
 
 # Install aws
 # https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
