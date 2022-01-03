@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
   env_box_name = ENV["BOX_NAME"]
   env_ram = ENV["RAM_MEMORY"]
   env_cpus = ENV["CPU_COUNT"]
+  env_private_ip = ENV["PRIVATE_IP"]
 
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -19,6 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-21.10"
   config.vm.define env_box_name
   config.vm.hostname = env_box_name
+  config.vm.network "private_network", ip: env_private_ip
 
   config.vm.provider "virtualbox" do |v|
     v.memory = env_ram
