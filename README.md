@@ -90,3 +90,20 @@ From time to time, the docker system will get clogged with an ungodly amount of 
   find . -type d -name .vscode-server -prune -exec rm -rf {} \;
   ```
 5. `ncdu /`
+
+## SSH config
+When trying to add custom SSH key as *id_rsa* & *id_rsa.pub* and trying to connect it's possible that there'll be an error
+saying that:
+   ```bash
+   Permissions (0777/0664 / or other) for '/$ser/$username/.ssh/id_rsa' are too open.
+   It is recommended that your private key files are NOT accessible by others.
+   This private key will be ignored.
+   ``` 
+That happend becouse of wrong .ssh folder and within files permission.
+Fix bellow commands:
+```bash
+ chmod 0600 ~/.ssh/id_rsa.pub
+ chmod 0600 ~/.ssh/authorized_keys
+ chmod 0600 ~/.ssh/id_rsa
+ chmod 0700 ~/.ssh
+```
